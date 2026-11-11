@@ -1,0 +1,37 @@
+# --- ESCRITA ---
+# 1. Pede o nome e a pontuação do jogador
+nome = input("Digite o nome do jogador: ")
+pontuacao = input("Digite a pontuação do jogador: ")
+
+# 2. Abre o arquivo 'jogadores.txt' no modo 'a' (append)
+arquivo = open("jogadores.txt", "a")
+
+# 3. Salva no arquivo usando write() com concatenação (+)
+arquivo.write(nome + "," + pontuacao + "\n")
+
+# 4. Fecha o arquivo
+arquivo.close()
+
+print("Jogador salvo com sucesso!")
+
+
+# --- LEITURA E PROCESSAMENTO ---
+# 1. Abre o arquivo jogadores.txt para leitura
+arquivo = open("jogadores.txt", "r")
+linhas = arquivo.readlines()
+arquivo.close()
+
+# 2. Inicializa as variáveis para a busca
+maior_pontuacao = -1
+melhor_jogador = ""
+
+# 3. Percorre cada linha do arquivo
+for linha in linhas:
+    if linha.strip():
+        nome, pts = linha.strip().split(",")
+        if int(pts) > maior_pontuacao:
+            maior_pontuacao = int(pts)
+            melhor_jogador = nome
+
+# 4. Exibe o resultado final no terminal
+print(f'Melhor jogador: {melhor_jogador} com {maior_pontuacao} pontos')
